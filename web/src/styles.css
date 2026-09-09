@@ -1,33 +1,59 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Lexend";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/lexend-700.ttf") format("truetype");
+@theme {
+  --color-purple-deep: #46146f;
+  --color-purple: #5e239e;
+  --color-violet: #8f3fd1;
+  --color-magenta: #b22cc4;
+  --color-gold: #f0b500;
+  --color-yellow: #f4c53a;
+  --color-charcoal: #2f2f33;
+  --color-background: #f7f5f8;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-sans: "Barlow", sans-serif;
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Barlow";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/poppins-400.ttf") format("truetype");
+  src: url("/fonts/barlow-400.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/barlow-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Barlow";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("/fonts/poppins-600.ttf") format("truetype");
+  src: url("/fonts/barlow-600.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Barlow Condensed";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/poppins-700.ttf") format("truetype");
+  src: url("/fonts/barlow-condensed-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/barlow-condensed-800.ttf") format("truetype");
+}
+
+html {
+  scroll-behavior: smooth;
 }
