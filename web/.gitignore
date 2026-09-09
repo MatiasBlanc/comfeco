@@ -5,5 +5,6 @@ dist/
 !.env.example
 *.tsbuildinfo
 *.log
+supabase/.temp/
 .DS_Store
 .vercel

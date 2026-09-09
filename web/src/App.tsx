@@ -66,7 +66,7 @@ export default function App(): JSX.Element {
 
       <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)] md:h-full md:min-h-0">
         <img
-          src="/comfeco-logo.png"
+          src="/brand/logo-horizontal.png"
           alt="COMFECO — Community Fest and Code"
           width="356"
           height="95"
