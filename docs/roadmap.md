@@ -1,25 +1,98 @@
-# Roadmap
+# COMFECO — Web Roadmap
 
 ## V0 — Waitlist
 
-Captar correos y validar el interés inicial de la comunidad.
+Objetivo:
 
-## V1 — Landing
+validar interés.
 
-Convertir la raíz del sitio en la landing oficial de COMFECO.
+Incluye:
 
-## V2 — Sponsors + Program
+- identidad COMFECO
+- formulario
+- Supabase
+- responsive
+- deploy
+- analytics básicos
 
-Publicar la información de sponsors y del programa.
+---
 
-## V3 — Registration
+## V0.5 — Landing
 
-Incorporar el registro de participantes.
+Objetivo:
 
-## V4 — Participant Platform
+explicar COMFECO mejor.
 
-Construir la experiencia de participantes.
+Incluye:
 
-## V5 — Hackathon Platform
+- hero
+- qué es COMFECO
+- propuesta de valor
+- waitlist
+- sponsors CTA
+- comunidad
+- links oficiales
 
-Añadir equipos, challenges y submissions.
+---
+
+## V1 — Public Website
+
+Cuando exista información confirmada.
+
+Posibles páginas:
+
+- /
+- /hackathon
+- /program
+- /speakers
+- /sponsors
+- /community
+- /faq
+
+No crear hasta necesitar.
+
+---
+
+## V2 — Registration
+
+Cuando se abra el evento.
+
+Agregar:
+
+- registro
+- perfil
+- estado de aplicación
+- consentimiento
+- comunicación
+
+---
+
+## V3 — Participant Platform
+
+Agregar solo cuando el evento lo justifique:
+
+- dashboard
+- team formation
+- challenges
+- announcements
+- schedule
+- mentorías
+
+---
+
+## V4 — Hackathon Platform
+
+Posibles funcionalidades:
+
+- equipos
+- repositorios
+- submissions
+- judging
+- evaluaciones
+- resultados
+
+---
+
+## Regla
+
+No desarrollar una versión futura antes de validar la necesidad de la versión actual.

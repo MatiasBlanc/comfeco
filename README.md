@@ -1,25 +1,51 @@
 # COMFECO
 
-Repositorio principal de COMFECO: la marca y el producto web evolucionan juntos sin separar la waitlist en otro proyecto.
+**Community Fest and Code**
 
-## Estructura
+COMFECO reúne a la comunidad tech de Latinoamérica alrededor de construcción, aprendizaje y conexiones.
+
+## Repository
 
 ```text
 comfeco/
-├── brand/          # Assets maestros de marca
-│   └── logos/
-├── web/            # Único proyecto web oficial
-│   └── ...
-├── docs/           # Producto, marca, roadmap y contenido
-└── README.md
+├── brand/
+├── web/
+└── docs/
 ```
 
-## Desarrollo
+### brand
 
-```bash
-cd web
-npm install
-npm run dev
-```
+Assets oficiales de COMFECO.
 
-Consulta [`web/README.md`](web/README.md) para la configuración de Supabase y las validaciones.
+### web
+
+Web pública de COMFECO.
+
+### docs
+
+Fuente de verdad para producto, branding, contenido y desarrollo.
+
+---
+
+## Current stage
+
+**Validation**
+
+Prioridades:
+
+- waitlist
+- landing
+- community
+- sponsors
+
+---
+
+## Docs
+
+Leer antes de desarrollar:
+
+1. `docs/product.md`
+2. `docs/brand.md`
+3. `docs/content.md`
+4. `docs/roadmap.md`
+5. `docs/rules.md`
