@@ -71,17 +71,8 @@ export const COUNTRY_OPTIONS = [
 ] as const;
 
 interface WaitlistPayload {
-  name: string;
   email: string;
-  country: string;
-  profiles: string[];
-  interests: string[];
-  teamPreference: string | null;
-  source: string | null;
-  wishlist: string;
-  wantsUpdates: boolean;
   website: string;
-  startedAt: number;
 }
 
 export type ValidationResult =
@@ -94,27 +85,11 @@ function getTrimmedString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function getStringArray(value: unknown): string[] {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return [...new Set(value.filter((item): item is string => typeof item === "string"))];
-}
-
-function isAllowed(value: string, options: readonly string[]): boolean {
-  return options.includes(value);
-}
-
-function areAllowed(values: string[], options: readonly string[]): boolean {
-  return values.every((value) => isAllowed(value, options));
-}
-
 /**
- * Normaliza y valida la carga pública de la waitlist antes de persistirla.
+ * Normaliza y valida el correo enviado desde la waitlist pública.
  *
  * @param input - JSON sin confianza recibido por el route handler.
- * @returns Resultado discriminado con datos limpios o un mensaje seguro.
+ * @returns Resultado discriminado con el correo normalizado o un mensaje seguro.
  */
 export function validateWaitlistPayload(input: unknown): ValidationResult {
   if (!input || typeof input !== "object") {
@@ -122,90 +97,16 @@ export function validateWaitlistPayload(input: unknown): ValidationResult {
   }
 
   const body = input as Record<string, unknown>;
-  const name = getTrimmedString(body.name);
   const email = getTrimmedString(body.email).toLowerCase();
-  const country = getTrimmedString(body.country);
-  const profiles = getStringArray(body.profiles);
-  const interests = getStringArray(body.interests);
-  const teamPreference = getTrimmedString(body.teamPreference) || null;
-  const source = getTrimmedString(body.source) || null;
-  const wishlist = getTrimmedString(body.wishlist);
   const website = getTrimmedString(body.website);
-  const startedAt = typeof body.startedAt === "number" ? body.startedAt : 0;
-  const elapsedTime = Date.now() - startedAt;
 
   if (website) {
-    return {
-      isValid: true,
-      data: {
-        name: "",
-        email: "",
-        country: "",
-        profiles: [],
-        interests: [],
-        teamPreference: null,
-        source: null,
-        wishlist: "",
-        wantsUpdates: false,
-        website,
-        startedAt,
-      },
-    };
-  }
-
-  if (elapsedTime < 500 || elapsedTime > 86_400_000) {
-    return { isValid: false, message: "Actualiza la página e inténtalo otra vez." };
-  }
-
-  if (name.length < 2 || name.length > 100) {
-    return { isValid: false, message: "Escribe un nombre válido (máximo 100 caracteres)." };
+    return { isValid: true, data: { email: "", website } };
   }
 
   if (email.length > 254 || !EMAIL_PATTERN.test(email)) {
     return { isValid: false, message: "Escribe un email válido." };
   }
 
-  if (!isAllowed(country, COUNTRY_OPTIONS)) {
-    return { isValid: false, message: "Selecciona tu país." };
-  }
-
-  if (profiles.length === 0 || !areAllowed(profiles, PROFILE_OPTIONS)) {
-    return { isValid: false, message: "Selecciona al menos un perfil tech." };
-  }
-
-  if (interests.length === 0 || !areAllowed(interests, INTEREST_OPTIONS)) {
-    return { isValid: false, message: "Cuéntanos qué te interesa de COMFECO." };
-  }
-
-  if (wishlist.length < 10 || wishlist.length > 1_000) {
-    return {
-      isValid: false,
-      message: "Cuéntanos un poco más (entre 10 y 1.000 caracteres).",
-    };
-  }
-
-  if (teamPreference && !isAllowed(teamPreference, TEAM_OPTIONS)) {
-    return { isValid: false, message: "La preferencia de equipo no es válida." };
-  }
-
-  if (source && !isAllowed(source, SOURCE_OPTIONS)) {
-    return { isValid: false, message: "La fuente seleccionada no es válida." };
-  }
-
-  return {
-    isValid: true,
-    data: {
-      name,
-      email,
-      country,
-      profiles,
-      interests,
-      teamPreference,
-      source,
-      wishlist,
-      wantsUpdates: body.wantsUpdates === true,
-      website,
-      startedAt,
-    },
-  };
+  return { isValid: true, data: { email, website } };
 }

@@ -50,15 +50,8 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const { error } = await supabase.from("waitlist").insert({
-    name: result.data.name,
     email: result.data.email,
-    country: result.data.country,
-    profiles: result.data.profiles,
-    interests: result.data.interests,
-    team_preference: result.data.teamPreference,
-    source: result.data.source,
-    wishlist: result.data.wishlist,
-    wants_updates: result.data.wantsUpdates,
+    wants_updates: true,
   });
 
   if (error?.code === "23505") {

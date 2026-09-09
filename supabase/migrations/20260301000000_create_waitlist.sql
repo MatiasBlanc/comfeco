@@ -2,7 +2,7 @@ create extension if not exists pgcrypto;
 
 create table if not exists public.waitlist (
   id uuid primary key default gen_random_uuid(),
-  name text not null check (char_length(name) between 2 and 100),
+  name text check (char_length(name) between 2 and 100),
   email text not null unique check (char_length(email) <= 254),
   country text,
   profiles text[] not null default '{}',

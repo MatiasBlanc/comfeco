@@ -7,7 +7,7 @@ import "./globals.css";
 
 const title = "COMFECO — Community Fest and Code";
 const description =
-  "Hackathon, tecnología y comunidad. Estamos explorando el regreso de COMFECO y queremos construirlo junto a developers de toda LATAM.";
+  "COMFECO reúne a la comunidad tech de Latinoamérica para aprender, crear y conectar a través de conferencias, workshops y hackathons.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
@@ -24,9 +24,10 @@ export const metadata: Metadata = {
     siteName: "COMFECO",
     title,
     description,
+    images: [{ url: "/comfeco-background.jpg", alt: "Conferencia de tecnología" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
     creator: "@comfeco",

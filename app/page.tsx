@@ -1,62 +1,56 @@
-import { Disciplines } from "@/components/landing/disciplines";
-import { Footer } from "@/components/landing/footer";
-import { Hero } from "@/components/landing/hero";
-import { History } from "@/components/landing/history";
-import { Navbar } from "@/components/landing/navbar";
-import { Partners } from "@/components/landing/partners";
-import { Possibilities } from "@/components/landing/possibilities";
+import Image from "next/image";
+
 import { WaitlistForm } from "@/components/landing/waitlist-form";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main id="contenido">
-        <Hero />
-        <Possibilities />
-        <Disciplines />
-        <History />
+    <main id="contenido">
+      <section className="relative isolate flex min-h-svh overflow-hidden bg-[#050708]">
+        <Image
+          src="/comfeco-background.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="-z-30 object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(3,5,6,0.96)_0%,rgba(3,5,6,0.82)_48%,rgba(3,5,6,0.42)_100%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(3,5,6,0.9)_0%,transparent_40%,rgba(3,5,6,0.38)_100%)]"
+          aria-hidden="true"
+        />
 
-        <section
-          id="waitlist"
-          className="relative scroll-mt-16 border-y border-white/[0.06] bg-[#090c11]"
-        >
-          <div
-            className="absolute inset-x-0 top-0 h-64 bg-cyan-300/[0.025] blur-3xl"
-            aria-hidden="true"
-          />
-          <div className="section-shell relative grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-16">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <p className="section-kicker">Tu input importa</p>
-              <h2 className="section-title">
-                Ayúdanos a construir COMFECO V2.
-              </h2>
-              <p className="section-copy">
-                Déjanos saber quién eres y qué tendría que tener COMFECO para
-                que dijeras: “quiero participar en esto”.
-              </p>
-              <div className="mt-8 space-y-3 font-mono text-xs text-zinc-600">
-                <p>
-                  <span className="mr-2 text-cyan-300">01</span> Te toma unos
-                  minutos
-                </p>
-                <p>
-                  <span className="mr-2 text-cyan-300">02</span> Sin cuentas ni
-                  contraseñas
-                </p>
-                <p>
-                  <span className="mr-2 text-cyan-300">03</span> Tu opinión
-                  define la idea
-                </p>
-              </div>
+        <div className="mx-auto flex w-full max-w-6xl flex-col px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
+          <p className="text-lg font-bold tracking-[-0.03em] text-white">
+            COMFECO<span className="text-cyan-300">.</span>
+          </p>
+
+          <div className="my-auto max-w-2xl py-16 sm:py-24">
+            <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Community Fest and Code
+            </p>
+            <h1 className="text-balance text-5xl font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+              La comunidad tech de LATAM se vuelve a encontrar.
+            </h1>
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-zinc-300 sm:text-xl">
+              COMFECO es el punto de encuentro para aprender, crear y conectar
+              con developers de toda Latinoamérica a través de conferencias,
+              workshops y hackathons.
+            </p>
+
+            <div className="mt-10 max-w-xl">
+              <WaitlistForm />
             </div>
-            <WaitlistForm />
           </div>
-        </section>
 
-        <Partners />
-      </main>
-      <Footer />
-    </>
+          <p className="text-xs text-zinc-500">
+            Sé de los primeros en enterarte de la próxima edición.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }

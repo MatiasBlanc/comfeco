@@ -1,6 +1,6 @@
 # COMFECO Waitlist
 
-Landing V0 de **COMFECO — Community Fest and Code** para validar interés, recoger ideas de la comunidad y abrir conversaciones con partners.
+Landing de **COMFECO — Community Fest and Code** con una presentación breve y una waitlist que solo solicita el correo.
 
 ## Stack
 
@@ -48,16 +48,13 @@ Consulta `.env.example`:
 - `SUPABASE_URL`: URL privada usada por el route handler.
 - `SUPABASE_SERVICE_ROLE_KEY`: clave privada del servidor.
 - `NEXT_PUBLIC_SITE_URL`: dominio canónico de producción.
-- `NEXT_PUBLIC_PARTNERS_CONTACT_URL`: `mailto:` o URL para partnerships. Si no se define, se usa el email público histórico del perfil oficial de COMFECO en GitHub.
 
 ## Analytics
 
 La landing emite estos eventos:
 
-- `hero_waitlist_click`
 - `waitlist_started`
 - `waitlist_submitted`
-- `sponsor_cta_click`
 
 `lib/analytics.ts` publica `comfeco:analytics` en `window` y, si existe `window.dataLayer`, también inserta el evento allí. Esto permite conectar GTM, Vercel Analytics u otro proveedor sin acoplar el formulario.
 
@@ -75,3 +72,7 @@ npm run build
 3. Despliega con el preset de Next.js.
 
 No se requiere autenticación, CMS ni procesos adicionales.
+
+## Imagen
+
+La fotografía de fondo es de [Product School](https://unsplash.com/@productschool) y se distribuye bajo la licencia de Unsplash.
