@@ -1,21 +1,8 @@
 import type { JSX } from "react";
 
+import ComfecoSlides from "./components/ComfecoSlides";
+import SponsorForm from "./components/SponsorForm";
 import WaitlistForm from "./components/WaitlistForm";
-
-const PILLARS = [
-  {
-    title: "Construir",
-    description: "Hackathons y proyectos creados junto a otras personas.",
-  },
-  {
-    title: "Aprender",
-    description: "Charlas, workshops y mentorías de quienes ya la están rompiendo.",
-  },
-  {
-    title: "Conectar",
-    description: "Developers, comunidades y empresas de toda Latinoamérica.",
-  },
-] as const;
 
 /**
  * Renderiza la landing pública de COMFECO con hero, propuesta de valor,
@@ -96,19 +83,7 @@ export default function App(): JSX.Element {
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-purple-deep sm:text-5xl">
             ¿Qué es COMFECO?
           </h2>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {PILLARS.map((pillar) => (
-              <article
-                key={pillar.title}
-                className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-[0_1rem_3rem_rgba(70,20,111,0.06)]"
-              >
-                <h3 className="m-0 font-display text-3xl font-bold tracking-tight text-purple-deep">
-                  {pillar.title}
-                </h3>
-                <p className="mb-0 mt-2 text-charcoal/75">{pillar.description}</p>
-              </article>
-            ))}
-          </div>
+          <ComfecoSlides />
         </div>
       </section>
 
@@ -148,20 +123,19 @@ export default function App(): JSX.Element {
       </section>
 
       <section id="sponsors" className="bg-charcoal text-white">
-        <div className="mx-auto w-full max-w-5xl px-5 py-20">
-          <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-            ¿Quieres construir COMFECO con nosotros?
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Estamos comenzando a conversar con empresas, comunidades y
-            organizaciones interesadas en apoyar COMFECO.
-          </p>
-          <a
-            href="mailto:sponsors@comfeco.dev?subject=Partnership%20COMFECO"
-            className="mt-8 inline-flex items-center justify-center rounded-xl bg-gold px-6 py-3 font-semibold text-charcoal outline-none transition hover:bg-yellow focus-visible:ring-3 focus-visible:ring-gold/50"
-          >
-            Hablar sobre partnerships
-          </a>
+        <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-20 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+          <div>
+            <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
+              ¿Quieres construir COMFECO con nosotros?
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-white/80">
+              Estamos comenzando a conversar con empresas, comunidades y
+              organizaciones interesadas en apoyar COMFECO.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+            <SponsorForm />
+          </div>
         </div>
       </section>
 
