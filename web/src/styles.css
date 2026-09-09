@@ -57,3 +57,30 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes sponsor-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor-marquee-track {
+  animation: sponsor-marquee 28s linear infinite;
+}
+
+.sponsor-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .sponsor-marquee-track {
+    animation: none;
+  }
+}

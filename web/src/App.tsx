@@ -2,6 +2,7 @@ import type { JSX } from "react";
 
 import ComfecoSlides from "./components/ComfecoSlides";
 import SponsorForm from "./components/SponsorForm";
+import SponsorMarquee from "./components/SponsorMarquee";
 import WaitlistForm from "./components/WaitlistForm";
 
 /**
@@ -123,6 +124,7 @@ export default function App(): JSX.Element {
       </section>
 
       <section id="sponsors" className="bg-charcoal text-white">
+        <SponsorMarquee />
         <div className="mx-auto grid w-full max-w-5xl gap-10 px-5 py-20 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div>
             <h2 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
