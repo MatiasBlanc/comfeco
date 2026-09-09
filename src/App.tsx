@@ -123,9 +123,26 @@ export default function App(): JSX.Element {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="min-h-14 cursor-pointer rounded-xl text-base border border-[#FFD400] bg-[#FFD400] px-6 font-semibold text-[#2E2E2E] shadow-[0_0.75rem_2rem_rgba(105,21,106,0.32)] outline-none transition hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_1rem_2.5rem_rgba(138,23,140,0.38)] focus-visible:ring-3 focus-visible:ring-[#8A178C] disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
+                className="inline-flex min-h-14 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#FFD400] bg-[#FFD400] px-6 text-base font-semibold text-[#2E2E2E] shadow-[0_0.75rem_2rem_rgba(105,21,106,0.32)] outline-none transition hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_1rem_2.5rem_rgba(138,23,140,0.38)] focus-visible:ring-3 focus-visible:ring-[#8A178C] disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
               >
-                {isSubmitting ? "Enviando…" : "Avísame cuando abra"}
+                {isSubmitting ? (
+                  "Enviando…"
+                ) : (
+                  <>
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      className="size-5 fill-none stroke-current stroke-[2]"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 1 1-6 0m6 0H9"
+                      />
+                    </svg>
+                    Avísame
+                  </>
+                )}
               </button>
               {errorMessage && (
                 <p className="absolute left-3 top-[calc(100%+0.5rem)] m-0 text-sm text-white" role="alert">
