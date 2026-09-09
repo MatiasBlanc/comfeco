@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-
-import { AnalyticsEvents } from "@/components/analytics-events";
-import { Toaster } from "@/components/ui/sonner";
+import type { JSX, ReactNode } from "react";
 
 import "./globals.css";
 
@@ -14,9 +12,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
+  icons: { icon: "/favicon.ico" },
   openGraph: {
     type: "website",
     locale: "es_LA",
@@ -33,9 +30,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
   twitter: {
     card: "summary_large_image",
     title,
@@ -43,10 +37,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     creator: "@comfeco",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -54,23 +45,24 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+/**
+ * Define el documento raíz y sus metadatos globales.
+ *
+ * @param props - Contenido generado por las rutas de la aplicación.
+ * @returns Documento HTML raíz.
+ */
+export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="es">
       <body>
-        <a
-          href="#contenido"
-          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-md bg-[#F0B500] px-4 py-2 text-sm font-semibold text-[#2F2F33] transition-transform focus:translate-y-0"
-        >
+        <a href="#contenido" className="skip-link">
           Saltar al contenido
         </a>
         {children}
-        <AnalyticsEvents />
-        <Toaster />
       </body>
     </html>
   );
