@@ -49,44 +49,54 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <main className="waitlist">
-      <div className="particles" aria-hidden="true">
-        <span className="particle square particle-1" />
-        <span className="particle diamond particle-2" />
-        <span className="particle cross particle-3" />
-        <span className="particle triangle particle-4" />
-        <span className="particle ring particle-5" />
-        <span className="particle square particle-6" />
-        <span className="particle triangle particle-7" />
-        <span className="particle cross particle-8" />
+    <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#2E2E2E_0%,#390F64_42%,#521E87_75%,#2E2E2E_130%)] font-['Poppins'] text-white selection:bg-[#8A178C]">
+      <div className="pointer-events-none absolute -left-40 -top-44 -z-10 size-[34rem] rounded-full bg-[#8A178C]/30 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-48 top-0 -z-10 size-[40rem] rounded-full bg-[#69156A]/45 blur-[130px]" />
+      <div className="pointer-events-none absolute bottom-[-18rem] right-[12%] -z-10 size-[38rem] rounded-full bg-[#FFD400]/15 blur-[130px]" />
+
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <span className="absolute left-[6%] top-[18%] size-6 rotate-12 border-4 border-[#8A178C]/70" />
+        <span className="absolute right-[18%] top-[10%] size-7 rotate-45 bg-[#69156A]/80" />
+        <span className="absolute right-[7%] top-[32%] size-8 rotate-45 before:absolute before:left-0 before:top-1/2 before:h-1 before:w-full before:-translate-y-1/2 before:rounded-full before:bg-[#8A178C]/70 after:absolute after:left-1/2 after:top-0 after:h-full after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-[#8A178C]/70" />
+        <span className="absolute bottom-[16%] right-[22%] size-0 border-x-[16px] border-b-[28px] border-x-transparent border-b-[#FFD400]/70" />
+        <span className="absolute bottom-[10%] left-[9%] size-8 rounded-full border-4 border-[#FFD400]/70" />
+        <span className="absolute right-[38%] top-[56%] size-5 -rotate-12 border-4 border-[#8A178C]/60 max-sm:hidden" />
+        <span className="absolute left-[48%] top-[28%] size-0 border-x-[13px] border-b-[23px] border-x-transparent border-b-[#FFD400]/60 max-sm:hidden" />
       </div>
 
-      <div className="page-shell">
+      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.75rem,4vw,2.5rem)]">
         <img
-          src="/comfeco-imagotipo.png"
+          src="/comfeco-logo.png"
           alt="COMFECO — Community Fest and Code"
-          width="284"
-          height="76"
-          className="brand"
+          width="356"
+          height="95"
+          className="h-auto w-[clamp(13rem,25vw,17rem)]"
         />
 
-        <section className="content" aria-labelledby="waitlist-title">
-          <p className="eyebrow">Community Fest and Code</p>
-          <h1 id="waitlist-title">
-            La comunidad tech de LATAM se vuelve a encontrar.
+        <section className="my-auto max-w-3xl py-[clamp(4rem,10vw,7rem)]" aria-labelledby="waitlist-title">
+          <h1
+            id="waitlist-title"
+            className="m-0 font-['Lexend'] text-[clamp(2.75rem,6vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.055em]"
+          >
+            Deja de programar
+            <span className="mt-[0.12em] block font-['Lexend'] text-[clamp(4rem,10vw,7rem)] leading-[0.85] tracking-[-0.08em] text-[#FFD400]">
+              Solo.
+            </span>
           </h1>
-          <p className="description">
-            COMFECO es el punto de encuentro para aprender, crear y conectar
-            con developers de toda Latinoamérica a través de conferencias,
-            workshops y hackathons.
+          <p className="mt-7 max-w-2xl text-[clamp(1.05rem,2vw,1.25rem)] leading-[1.65] text-[#F3E8F4]">
+            Aprende de los que ya la están rompiendo, compite por premios reales
+            y conecta con developers de toda la región.
           </p>
 
           {isSubmitted ? (
-            <p className="success-message" role="status">
+            <p className="mt-10 max-w-2xl rounded-2xl border border-[#FFD400]/45 bg-[#390F64]/55 px-5 py-4 backdrop-blur-xl" role="status">
               Listo. Te avisaremos cuando haya novedades.
             </p>
           ) : (
-            <form className="email-form" onSubmit={handleSubmit}>
+            <form
+              className="relative mt-10 flex max-w-2xl gap-2.5 rounded-2xl border border-[#F3E8F4]/30 bg-[#2E2E2E]/50 p-2.5 shadow-[0_1.5rem_4rem_rgba(57,15,100,0.35)] backdrop-blur-xl max-sm:flex-col"
+              onSubmit={handleSubmit}
+            >
               <label htmlFor="email" className="sr-only">
                 Correo electrónico
               </label>
@@ -100,30 +110,31 @@ export default function App(): JSX.Element {
                 required
                 disabled={isSubmitting}
                 placeholder="tu@email.com"
+                className="min-h-14 min-w-0 flex-1 rounded-xl border border-transparent bg-transparent px-4 text-base text-white outline-none placeholder:text-[#F3E8F4]/60 focus-visible:border-[#8A178C] focus-visible:ring-3 focus-visible:ring-[#8A178C]/30 disabled:cursor-not-allowed disabled:opacity-60"
               />
               <input
-                className="honeypot"
+                className="absolute -left-[10000px]"
                 name="website"
                 type="text"
                 autoComplete="off"
                 tabIndex={-1}
                 aria-hidden="true"
               />
-              <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Enviando…" : "Quiero enterarme"}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="min-h-14 cursor-pointer rounded-xl border border-[#FFD400] bg-[#FFD400] px-6 font-semibold text-[#2E2E2E] shadow-[0_0.75rem_2rem_rgba(105,21,106,0.32)] outline-none transition hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_1rem_2.5rem_rgba(138,23,140,0.38)] focus-visible:ring-3 focus-visible:ring-[#8A178C] disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
+              >
+                {isSubmitting ? "Enviando…" : "Avísame cuando abra"}
               </button>
               {errorMessage && (
-                <p className="error-message" role="alert">
+                <p className="absolute left-3 top-[calc(100%+0.5rem)] m-0 text-sm text-white" role="alert">
                   {errorMessage}
                 </p>
               )}
             </form>
           )}
         </section>
-
-        <p className="footer-copy">
-          Sé de los primeros en enterarte de la próxima edición.
-        </p>
       </div>
     </main>
   );

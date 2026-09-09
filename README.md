@@ -1,6 +1,6 @@
 # COMFECO Website
 
-Waitlist de COMFECO desarrollada con React y Vite. El correo se guarda en Supabase mediante una Vercel Function.
+Waitlist de COMFECO desarrollada con React, Vite y Tailwind CSS v4. El correo se guarda en Supabase mediante una Vercel Function.
 
 ## Desarrollo
 
