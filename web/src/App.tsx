@@ -4,6 +4,7 @@ import ComfecoSlides from "./components/ComfecoSlides";
 import SponsorForm from "./components/SponsorForm";
 import SponsorMarquee from "./components/SponsorMarquee";
 import WaitlistForm from "./components/WaitlistForm";
+import { officialLinks } from "./data/links";
 
 /**
  * Renderiza la landing pública de COMFECO con hero, propuesta de valor,
@@ -143,15 +144,30 @@ export default function App(): JSX.Element {
 
       <footer className="border-t border-charcoal/10">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-start gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
-          <img
-            src="/brand/logo-horizontal.png"
-            alt="COMFECO"
-            width="356"
-            height="95"
-            className="h-8 w-auto"
-            loading="lazy"
-          />
-          <p className="m-0 text-sm text-charcoal/60">Community Fest and Code</p>
+          <div>
+            <img
+              src="/brand/logo-horizontal.png"
+              alt="COMFECO"
+              width="356"
+              height="95"
+              className="h-8 w-auto"
+              loading="lazy"
+            />
+            <p className="mb-0 mt-2 text-sm text-charcoal/60">Community Fest and Code</p>
+          </div>
+          <nav aria-label="Enlaces oficiales" className="flex flex-wrap gap-4 text-sm font-medium">
+            {officialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md text-charcoal/80 outline-none transition hover:text-purple focus-visible:ring-3 focus-visible:ring-violet/40"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </footer>
     </main>

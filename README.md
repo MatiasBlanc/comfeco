@@ -49,3 +49,20 @@ Leer antes de desarrollar:
 3. `docs/content.md`
 4. `docs/roadmap.md`
 5. `docs/rules.md`
+
+## Desarrollo
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+La app vive en `web/`. En Vercel usa **Root Directory: `web`**.
+
+Antes de publicar, aplica las migraciones de `web/supabase/migrations/` en Supabase.
+
+## Enlaces
+
+- GitHub de COMFECO: https://github.com/comfeco
+- Discord: https://discord.gg/T52AGFnjKg

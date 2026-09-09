@@ -1,3 +1,4 @@
+import { track } from "@vercel/analytics";
 import { useState, type FormEvent, type JSX } from "react";
 
 interface ApiResponse {
@@ -48,6 +49,7 @@ export default function SponsorForm(): JSX.Element {
         throw new Error(data.message ?? "No pudimos enviar tu mensaje.");
       }
 
+      track("sponsor_submit");
       setIsSubmitted(true);
     } catch (error) {
       setErrorMessage(

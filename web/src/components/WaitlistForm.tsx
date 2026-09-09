@@ -1,3 +1,4 @@
+import { track } from "@vercel/analytics";
 import { useState, type FormEvent, type JSX } from "react";
 
 interface ApiResponse {
@@ -72,6 +73,7 @@ export default function WaitlistForm(): JSX.Element {
         throw new Error(data.message ?? "No pudimos guardar tu correo.");
       }
 
+      track("waitlist_submit");
       setIsSubmitted(true);
     } catch (error) {
       setErrorMessage(
