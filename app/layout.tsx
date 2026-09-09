@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07090d",
+  themeColor: "#2F2F33",
   colorScheme: "dark",
 };
 
@@ -53,7 +53,7 @@ export default function RootLayout({
       <body>
         <a
           href="#contenido"
-          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-md bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 transition-transform focus:translate-y-0"
+          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded-md bg-[#F0B500] px-4 py-2 text-sm font-semibold text-[#2F2F33] transition-transform focus:translate-y-0"
         >
           Saltar al contenido
         </a>

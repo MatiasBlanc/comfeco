@@ -76,3 +76,7 @@ No se requiere autenticación, CMS ni procesos adicionales.
 ## Imagen
 
 La fotografía de fondo es de [Product School](https://unsplash.com/@productschool) y se distribuye bajo la licencia de Unsplash.
+
+## Paleta visual
+
+La interfaz utiliza morado profundo `#46146F`, violeta `#5E239E`, violeta brillante `#8F3FD1`, magenta violeta `#B22CC4`, dorado `#F0B500`, amarillo cálido `#F4C53A`, gris carbón `#2F2F33`, lila claro `#D9D2DD` y fondo claro suave `#F3F1F4`.

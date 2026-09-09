@@ -71,10 +71,10 @@ export function WaitlistForm() {
   if (isSubmitted) {
     return (
       <div
-        className="flex items-center gap-3 rounded-xl border border-cyan-300/25 bg-black/45 px-5 py-4 text-cyan-100 backdrop-blur-md"
+        className="flex items-center gap-3 rounded-xl border border-[#F4C53A]/40 bg-[#46146F]/55 px-5 py-4 text-[#F3F1F4] backdrop-blur-md"
         role="status"
       >
-        <CheckCircle2 className="size-5 shrink-0 text-cyan-300" aria-hidden="true" />
+        <CheckCircle2 className="size-5 shrink-0 text-[#F4C53A]" aria-hidden="true" />
         <p className="font-medium">Listo. Te avisaremos cuando haya novedades.</p>
       </div>
     );
@@ -85,7 +85,7 @@ export function WaitlistForm() {
       onSubmit={handleSubmit}
       onFocusCapture={handleStart}
       aria-label="Formulario para unirse a la waitlist de COMFECO"
-      className="rounded-2xl border border-white/15 bg-black/35 p-2 shadow-2xl shadow-black/30 backdrop-blur-md sm:flex"
+      className="rounded-2xl border border-[#D9D2DD]/30 bg-[#2F2F33]/55 p-2 shadow-2xl shadow-black/30 backdrop-blur-md sm:flex"
     >
       <label htmlFor="email" className="sr-only">
         Correo electrónico
