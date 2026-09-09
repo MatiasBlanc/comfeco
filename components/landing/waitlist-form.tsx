@@ -85,7 +85,7 @@ export function WaitlistForm() {
       onSubmit={handleSubmit}
       onFocusCapture={handleStart}
       aria-label="Formulario para unirse a la waitlist de COMFECO"
-      className="rounded-2xl border border-[#D9D2DD]/30 bg-[#2F2F33]/55 p-2 shadow-2xl shadow-black/30 backdrop-blur-md sm:flex"
+      className="rounded-2xl border border-[#D9D2DD]/30 bg-[#2F2F33]/55 p-2 shadow-2xl shadow-[#46146F]/30 backdrop-blur-md sm:flex"
     >
       <label htmlFor="email" className="sr-only">
         Correo electrónico

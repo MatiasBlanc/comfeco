@@ -73,9 +73,9 @@ npm run build
 
 No se requiere autenticación, CMS ni procesos adicionales.
 
-## Imagen
+## Logos
 
-La fotografía de fondo es de [Product School](https://unsplash.com/@productschool) y se distribuye bajo la licencia de Unsplash.
+Los logos optimizados están en `public/`. El isotipo se utiliza como `public/favicon.ico`.
 
 ## Paleta visual
 

@@ -24,7 +24,10 @@ export const metadata: Metadata = {
     siteName: "COMFECO",
     title,
     description,
-    images: [{ url: "/comfeco-background.jpg", alt: "Conferencia de tecnología" }],
+    images: [{ url: "/comfeco-imagotipo.png", alt: "COMFECO — Community Fest and Code" }],
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
   twitter: {
     card: "summary_large_image",
