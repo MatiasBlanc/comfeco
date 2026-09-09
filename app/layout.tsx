@@ -24,7 +24,14 @@ export const metadata: Metadata = {
     siteName: "COMFECO",
     title,
     description,
-    images: [{ url: "/comfeco-imagotipo.png", alt: "COMFECO — Community Fest and Code" }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "COMFECO — Community Fest and Code",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",
@@ -33,6 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og-image.png"],
     creator: "@comfeco",
   },
   robots: {

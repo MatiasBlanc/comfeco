@@ -75,7 +75,7 @@ No se requiere autenticación, CMS ni procesos adicionales.
 
 ## Logos
 
-Los logos optimizados están en `public/`. El isotipo se utiliza como `public/favicon.ico`.
+Los logos optimizados están en `public/`. El isotipo se utiliza como `public/favicon.ico` y la imagen Open Graph como `public/og-image.png`.
 
 ## Paleta visual
 
