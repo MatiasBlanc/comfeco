@@ -49,7 +49,7 @@ export default function App(): JSX.Element {
   };
 
   return (
-    <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#2E2E2E_0%,#390F64_42%,#521E87_75%,#2E2E2E_130%)] font-['Poppins'] text-white selection:bg-[#8A178C]">
+    <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#2E2E2E_0%,#390F64_42%,#521E87_75%,#2E2E2E_130%)] font-['Poppins'] text-white selection:bg-[#8A178C] md:h-svh md:max-h-svh md:overflow-y-hidden">
       <div className="pointer-events-none absolute -left-40 -top-44 -z-10 size-[34rem] rounded-full bg-[#8A178C]/30 blur-[120px]" />
       <div className="pointer-events-none absolute -right-48 top-0 -z-10 size-[40rem] rounded-full bg-[#69156A]/45 blur-[130px]" />
       <div className="pointer-events-none absolute bottom-[-18rem] right-[12%] -z-10 size-[38rem] rounded-full bg-[#FFD400]/15 blur-[130px]" />
@@ -64,14 +64,24 @@ export default function App(): JSX.Element {
         <span className="absolute left-[48%] top-[28%] size-0 border-x-[13px] border-b-[23px] border-x-transparent border-b-[#FFD400]/60 max-sm:hidden" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)]">
-        <img
-          src="/comfeco-logo.png"
-          alt="COMFECO — Community Fest and Code"
-          width="356"
-          height="95"
-          className="h-auto w-[clamp(13rem,25vw,17rem)]"
-        />
+      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)] md:h-full md:min-h-0">
+        <div className="group relative aspect-[356/95] w-[clamp(13rem,25vw,17rem)]" aria-label="COMFECO — Community Fest and Code">
+          <img
+            src="/comfeco-icon-white.png"
+            alt="COMFECO"
+            width="95"
+            height="95"
+            className="absolute left-1/2 top-0 h-full w-auto -translate-x-1/2 transition-[left,transform] duration-500 ease-out group-hover:left-0 group-hover:translate-x-0"
+          />
+          <img
+            src="/comfeco-wordmark-white.png"
+            alt=""
+            aria-hidden="true"
+            width="261"
+            height="95"
+            className="absolute left-[26.7%] top-0 h-full w-[73.3%] translate-x-3 opacity-0 transition-[opacity,transform] duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100"
+          />
+        </div>
 
         <section className="my-auto max-w-3xl py-[clamp(2rem,5vh,4rem)]" aria-labelledby="waitlist-title">
           <h1
