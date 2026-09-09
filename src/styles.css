@@ -1,0 +1,321 @@
+:root {
+  color-scheme: dark;
+  --charcoal: #2f2f33;
+  --deep-purple: #46146f;
+  --strong-violet: #5e239e;
+  --violet: #8f3fd1;
+  --magenta: #b22cc4;
+  --gold: #f0b500;
+  --warm-yellow: #f4c53a;
+  --light-lilac: #d9d2dd;
+  --soft-white: #f3f1f4;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: var(--soft-white);
+  background: var(--charcoal);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+::selection {
+  color: var(--soft-white);
+  background: rgb(143 63 209 / 0.6);
+}
+
+.waitlist {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 10%, rgb(178 44 196 / 0.3), transparent 30%),
+    radial-gradient(circle at 92% 12%, rgb(143 63 209 / 0.48), transparent 38%),
+    radial-gradient(circle at 76% 92%, rgb(240 181 0 / 0.14), transparent 26%),
+    linear-gradient(145deg, #26122f 0%, var(--deep-purple) 40%, var(--strong-violet) 72%, var(--charcoal) 125%);
+}
+
+.waitlist::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgb(243 241 244 / 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(243 241 244 / 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to right, transparent, black 65%, transparent);
+  content: "";
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 2.5rem, 70rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  padding-block: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.brand {
+  width: clamp(13rem, 25vw, 17rem);
+  height: auto;
+}
+
+.content {
+  max-width: 45rem;
+  margin-block: auto;
+  padding-block: clamp(4rem, 10vw, 7rem);
+}
+
+.eyebrow {
+  margin: 0 0 1.25rem;
+  color: var(--warm-yellow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.description {
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  color: var(--light-lilac);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.email-form {
+  position: relative;
+  display: flex;
+  gap: 0.625rem;
+  max-width: 38rem;
+  margin-top: 2.5rem;
+  padding: 0.625rem;
+  border: 1px solid rgb(217 210 221 / 0.3);
+  border-radius: 1rem;
+  background: rgb(47 47 51 / 0.48);
+  box-shadow: 0 1.5rem 4rem rgb(32 8 46 / 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.email-form input[type="email"] {
+  min-width: 0;
+  min-height: 3.5rem;
+  flex: 1;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  outline: none;
+  background: transparent;
+  padding: 0 1rem;
+  color: var(--soft-white);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+
+.email-form input::placeholder {
+  color: rgb(217 210 221 / 0.62);
+}
+
+.email-form input[type="email"]:focus-visible {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgb(143 63 209 / 0.3);
+}
+
+.email-form button {
+  min-height: 3.5rem;
+  border: 1px solid var(--warm-yellow);
+  border-radius: 0.65rem;
+  outline: none;
+  background: linear-gradient(135deg, var(--gold), var(--warm-yellow));
+  padding-inline: 1.5rem;
+  color: var(--charcoal);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 0.75rem 2rem rgb(143 63 209 / 0.32);
+  transition: transform 150ms, box-shadow 150ms;
+}
+
+.email-form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2.5rem rgb(178 44 196 / 0.38);
+}
+
+.email-form button:focus-visible {
+  box-shadow: 0 0 0 3px var(--deep-purple), 0 0 0 6px var(--violet);
+}
+
+.email-form button:disabled,
+.email-form input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+}
+
+.success-message {
+  max-width: 38rem;
+  margin-top: 2.5rem;
+  border: 1px solid rgb(244 197 58 / 0.45);
+  border-radius: 1rem;
+  background: rgb(70 20 111 / 0.55);
+  padding: 1.1rem 1.25rem;
+  backdrop-filter: blur(14px);
+}
+
+.error-message {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0.75rem;
+  margin: 0;
+  color: var(--soft-white);
+  font-size: 0.875rem;
+}
+
+.footer-copy {
+  margin: 0;
+  color: rgb(217 210 221 / 0.75);
+  font-size: 0.8rem;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  display: block;
+  opacity: 0.7;
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+.square {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.25rem solid var(--magenta);
+  rotate: 16deg;
+}
+
+.diamond {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--violet);
+  rotate: 45deg;
+}
+
+.ring {
+  width: 2rem;
+  height: 2rem;
+  border: 0.3rem solid var(--warm-yellow);
+  border-radius: 50%;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-right: 1rem solid transparent;
+  border-bottom: 1.8rem solid var(--gold);
+  border-left: 1rem solid transparent;
+}
+
+.cross {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.cross::before,
+.cross::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0.3rem;
+  border-radius: 1rem;
+  background: var(--magenta);
+  content: "";
+}
+
+.cross::before {
+  rotate: 45deg;
+}
+
+.cross::after {
+  rotate: -45deg;
+}
+
+.particle-1 { top: 18%; left: 6%; }
+.particle-2 { top: 10%; right: 18%; animation-delay: -2s; }
+.particle-3 { top: 32%; right: 7%; animation-delay: -4s; }
+.particle-4 { right: 22%; bottom: 16%; animation-delay: -1s; }
+.particle-5 { bottom: 10%; left: 9%; animation-delay: -3s; }
+.particle-6 { top: 56%; right: 38%; animation-delay: -5s; }
+.particle-7 { top: 28%; left: 48%; animation-delay: -2.5s; }
+.particle-8 { bottom: 7%; left: 43%; animation-delay: -4.5s; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes float {
+  from { translate: 0 0; }
+  to { translate: 0 -1.1rem; }
+}
+
+@media (max-width: 40rem) {
+  .email-form {
+    flex-direction: column;
+  }
+
+  .email-form button {
+    width: 100%;
+  }
+
+  .particle {
+    opacity: 0.45;
+  }
+
+  .particle-6,
+  .particle-7 {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+  }
+}

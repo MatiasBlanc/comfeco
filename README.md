@@ -1,21 +1,19 @@
-# COMFECO Waitlist
+# COMFECO Website
 
-Waitlist de COMFECO con registro de correo en Supabase.
+Waitlist de COMFECO desarrollada con React y Vite. El correo se guarda en Supabase mediante una Vercel Function.
 
 ## Desarrollo
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-Variables requeridas:
+Para probar también `/api/waitlist`, usa `vercel dev` con estas variables:
 
 ```dotenv
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-NEXT_PUBLIC_SITE_URL=https://comfeco.vercel.app
 ```
 
 Aplica `supabase/migrations/20260301000000_create_waitlist.sql` en el SQL Editor de Supabase antes de publicar.
@@ -26,7 +24,3 @@ Aplica `supabase/migrations/20260301000000_create_waitlist.sql` en el SQL Editor
 npm run lint
 npm run build
 ```
-
-## Recursos
-
-Los logos, el favicon, la imagen Open Graph y el banner histórico optimizado están en `public/`.
