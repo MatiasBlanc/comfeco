@@ -64,7 +64,7 @@ export default function App(): JSX.Element {
         <span className="absolute left-[48%] top-[28%] size-0 border-x-[13px] border-b-[23px] border-x-transparent border-b-[#FFD400]/60 max-sm:hidden" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.75rem,4vw,2.5rem)]">
+      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)]">
         <img
           src="/comfeco-logo.png"
           alt="COMFECO — Community Fest and Code"
@@ -73,17 +73,17 @@ export default function App(): JSX.Element {
           className="h-auto w-[clamp(13rem,25vw,17rem)]"
         />
 
-        <section className="my-auto max-w-3xl py-[clamp(4rem,10vw,7rem)]" aria-labelledby="waitlist-title">
+        <section className="my-auto max-w-3xl py-[clamp(2rem,5vh,4rem)]" aria-labelledby="waitlist-title">
           <h1
             id="waitlist-title"
-            className="m-0 font-['Lexend'] text-[clamp(2.75rem,6vw,4.5rem)] font-bold leading-[0.98] tracking-[-0.055em]"
+            className="m-0 font-['Lexend'] text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.98] tracking-[-0.055em]"
           >
             Deja de programar
-            <span className="mt-[0.12em] block font-['Lexend'] text-[clamp(4rem,10vw,7rem)] leading-[0.85] tracking-[-0.08em] text-[#FFD400]">
+            <span className="mt-[0.12em] block font-['Lexend'] text-[clamp(4.5rem,10vw,8rem)] leading-[0.85] tracking-[-0.08em] text-[#FFD400]">
               Solo.
             </span>
           </h1>
-          <p className="mt-7 max-w-2xl text-[clamp(1.05rem,2vw,1.25rem)] leading-[1.65] text-[#F3E8F4]">
+          <p className="mt-7 max-w-2xl text-[clamp(1.125rem,1.7vw,1.375rem)] leading-[1.6] text-[#F3E8F4]">
             Aprende de los que ya la están rompiendo, compite por premios reales
             y conecta con developers de toda la región.
           </p>
@@ -123,7 +123,7 @@ export default function App(): JSX.Element {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="min-h-14 cursor-pointer rounded-xl border border-[#FFD400] bg-[#FFD400] px-6 font-semibold text-[#2E2E2E] shadow-[0_0.75rem_2rem_rgba(105,21,106,0.32)] outline-none transition hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_1rem_2.5rem_rgba(138,23,140,0.38)] focus-visible:ring-3 focus-visible:ring-[#8A178C] disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
+                className="min-h-14 cursor-pointer rounded-xl text-base border border-[#FFD400] bg-[#FFD400] px-6 font-semibold text-[#2E2E2E] shadow-[0_0.75rem_2rem_rgba(105,21,106,0.32)] outline-none transition hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_1rem_2.5rem_rgba(138,23,140,0.38)] focus-visible:ring-3 focus-visible:ring-[#8A178C] disabled:cursor-not-allowed disabled:opacity-60 max-sm:w-full"
               >
                 {isSubmitting ? "Enviando…" : "Avísame cuando abra"}
               </button>
