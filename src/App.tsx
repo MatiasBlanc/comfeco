@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type JSX } from "react";
+import { useEffect, useState, type FormEvent, type JSX } from "react";
 
 interface ApiResponse {
   message?: string;
@@ -13,6 +13,12 @@ export default function App(): JSX.Element {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLogoRevealed, setIsLogoRevealed] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsLogoRevealed(true), 1000);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -65,13 +71,18 @@ export default function App(): JSX.Element {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)] md:h-full md:min-h-0">
-        <div className="group relative aspect-[356/95] w-[clamp(13rem,25vw,17rem)]" aria-label="COMFECO — Community Fest and Code">
+        <div
+          className="relative aspect-[356/95] w-[clamp(13rem,25vw,17rem)]"
+          aria-label="COMFECO — Community Fest and Code"
+          role="img"
+        >
           <img
             src="/comfeco-icon-white.png"
-            alt="COMFECO"
+            alt=""
+            aria-hidden="true"
             width="95"
             height="95"
-            className="absolute left-1/2 top-0 h-full w-auto -translate-x-1/2 transition-[left,transform] duration-500 ease-out group-hover:left-0 group-hover:translate-x-0"
+            className={`absolute top-0 h-full w-auto transition-[left,transform] duration-500 ease-out ${isLogoRevealed ? "left-0 translate-x-0" : "left-1/2 -translate-x-1/2"}`}
           />
           <img
             src="/comfeco-wordmark-white.png"
@@ -79,7 +90,7 @@ export default function App(): JSX.Element {
             aria-hidden="true"
             width="261"
             height="95"
-            className="absolute left-[26.7%] top-0 h-full w-[73.3%] translate-x-3 opacity-0 transition-[opacity,transform] duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100"
+            className={`absolute left-[26.7%] top-0 h-full w-[73.3%] transition-[opacity,transform] duration-500 ease-out ${isLogoRevealed ? "translate-x-0 opacity-100" : "translate-x-3 opacity-0"}`}
           />
         </div>
 
