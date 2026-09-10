@@ -5,6 +5,7 @@ import {
   BUILD_LEARN_MIN,
   CHALLENGE_TYPES,
   COMPETITIONS,
+  COUNTRIES,
   HACKATHON_FORMATS,
   LEARNING_FORMATS,
   MAX_FEEDBACK_LENGTH,
@@ -58,6 +59,7 @@ export default function SurveyForm({
     : "";
   const isValidFormat = HACKATHON_FORMATS.some((f) => f.value === initialFormat);
   const [hackathonFormat, setHackathonFormat] = useState(isValidFormat ? initialFormat : "");
+  const [country, setCountry] = useState("");
   const [challengeType, setChallengeType] = useState("");
   const [learningFormats, setLearningFormats] = useState<string[]>([]);
   const [buildLearnBalance, setBuildLearnBalance] = useState(3);
@@ -76,6 +78,7 @@ export default function SurveyForm({
     const formData = new FormData(event.currentTarget);
     const parsed = parseSurveyAnswers({
       hackathonFormat,
+      country,
       challengeType,
       learningFormats,
       buildLearnBalance,
@@ -148,6 +151,30 @@ export default function SurveyForm({
           ))}
         </div>
       </fieldset>
+
+      <div className="flex flex-col gap-2">
+        <label htmlFor="country" className="text-base font-semibold text-charcoal">
+          ¿Desde qué país participarías?
+        </label>
+        <select
+          id="country"
+          name="country"
+          value={country}
+          onChange={(event) => setCountry(event.target.value)}
+          required
+          disabled={isSubmitting}
+          className={inputStyles}
+        >
+          <option value="" disabled>
+            Selecciona tu país
+          </option>
+          {COUNTRIES.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
         <legend className="mb-1 text-base font-semibold text-charcoal">

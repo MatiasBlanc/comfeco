@@ -22,6 +22,18 @@ interface WaitlistSummary {
   response_rate: number;
 }
 
+interface SurveySummary {
+  responses: number;
+  avg_build_learn_balance: number;
+  hackathon_formats: Record<string, number> | null;
+  countries: Record<string, number> | null;
+  challenge_types: Record<string, number> | null;
+  competitions: Record<string, number> | null;
+  motivations: Record<string, number> | null;
+  year_round_events: Record<string, number> | null;
+  recent_feedback: Array<{ feedback: string; created_at: string }> | null;
+}
+
 const SESSION_COOKIE = "pulse_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
 
@@ -162,5 +174,13 @@ export default async function handler(
     response_rate: Number(row.response_rate),
   };
 
-  response.status(200).json({ summary });
+  const { data: surveyData } = await supabase
+    .from("survey_summary")
+    .select("*")
+    .maybeSingle();
+
+  response.status(200).json({
+    summary,
+    survey: (surveyData as SurveySummary | null) ?? null,
+  });
 }

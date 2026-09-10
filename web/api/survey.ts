@@ -48,6 +48,7 @@ const YEAR_ROUND_EVENTS = new Set([
 
 interface SurveyAnswers {
   hackathonFormat: string;
+  country: string;
   challengeType: string;
   learningFormats: string[];
   buildLearnBalance: number;
@@ -117,6 +118,8 @@ function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
 
   const body = input as Record<string, unknown>;
   const hackathonFormat = readAllowedValue(body.hackathonFormat, HACKATHON_FORMATS);
+  const country =
+    typeof body.country === "string" ? body.country.trim().slice(0, 100) : "";
   const challengeType = readAllowedValue(body.challengeType, CHALLENGE_TYPES);
   const learningFormats = readAllowedValues(body.learningFormats, LEARNING_FORMATS);
   const competitions = readAllowedValues(body.competitions, COMPETITIONS);
@@ -132,6 +135,7 @@ function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
       : "";
 
   if (!hackathonFormat) return "Elige un formato de hackathon.";
+  if (!country) return "Selecciona tu país.";
   if (!challengeType) return "Elige un tipo de challenge.";
   if (!learningFormats) return "Elige al menos una forma de aprender.";
   if (!Number.isInteger(buildLearnBalance) || buildLearnBalance < 1 || buildLearnBalance > 5) {
@@ -143,6 +147,7 @@ function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
 
   return {
     hackathonFormat,
+    country,
     challengeType,
     learningFormats,
     buildLearnBalance,
@@ -322,6 +327,7 @@ export default async function handler(
   const { error: insertError } = await supabase.from("survey_responses").insert({
     waitlist_id: waitlist.id,
     hackathon_format: answers.hackathonFormat,
+    country: answers.country,
     challenge_type: answers.challengeType,
     learning_formats: answers.learningFormats,
     build_learn_balance: answers.buildLearnBalance,

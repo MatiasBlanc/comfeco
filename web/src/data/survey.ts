@@ -52,7 +52,33 @@ export const BUILD_LEARN_MAX = 5;
 export const MAX_FEEDBACK_LENGTH = 1000;
 export const SURVEY_TOKEN_PATTERN = /^[a-f0-9]{64}$/;
 
+export const COUNTRIES = [
+  { value: "Argentina", label: "Argentina" },
+  { value: "Bolivia", label: "Bolivia" },
+  { value: "Chile", label: "Chile" },
+  { value: "Colombia", label: "Colombia" },
+  { value: "Costa Rica", label: "Costa Rica" },
+  { value: "Cuba", label: "Cuba" },
+  { value: "Ecuador", label: "Ecuador" },
+  { value: "El Salvador", label: "El Salvador" },
+  { value: "España", label: "España" },
+  { value: "Estados Unidos", label: "Estados Unidos" },
+  { value: "Guatemala", label: "Guatemala" },
+  { value: "Honduras", label: "Honduras" },
+  { value: "México", label: "México" },
+  { value: "Nicaragua", label: "Nicaragua" },
+  { value: "Panamá", label: "Panamá" },
+  { value: "Paraguay", label: "Paraguay" },
+  { value: "Perú", label: "Perú" },
+  { value: "Puerto Rico", label: "Puerto Rico" },
+  { value: "República Dominicana", label: "República Dominicana" },
+  { value: "Uruguay", label: "Uruguay" },
+  { value: "Venezuela", label: "Venezuela" },
+  { value: "Otro", label: "Otro" },
+] as const;
+
 export type HackathonFormat = (typeof HACKATHON_FORMATS)[number]["value"];
+export type Country = (typeof COUNTRIES)[number]["value"];
 export type ChallengeType = (typeof CHALLENGE_TYPES)[number]["value"];
 export type LearningFormat = (typeof LEARNING_FORMATS)[number]["value"];
 export type Competition = (typeof COMPETITIONS)[number]["value"];
@@ -61,6 +87,7 @@ export type YearRoundEvent = (typeof YEAR_ROUND_EVENTS)[number]["value"];
 
 export interface SurveyAnswers {
   hackathonFormat: HackathonFormat;
+  country: string;
   challengeType: ChallengeType;
   learningFormats: LearningFormat[];
   buildLearnBalance: number;
@@ -143,6 +170,8 @@ export function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
 
   const body = input as Record<string, unknown>;
   const hackathonFormat = readAllowedValue(body.hackathonFormat, HACKATHON_FORMATS);
+  const country =
+    typeof body.country === "string" ? body.country.trim().slice(0, 100) : "";
   const challengeType = readAllowedValue(body.challengeType, CHALLENGE_TYPES);
   const learningFormats = readAllowedValues(body.learningFormats, LEARNING_FORMATS);
   const competitions = readAllowedValues(body.competitions, COMPETITIONS);
@@ -157,6 +186,10 @@ export function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
 
   if (!hackathonFormat) {
     return "Elige un formato de hackathon.";
+  }
+
+  if (!country) {
+    return "Selecciona tu país.";
   }
 
   if (!challengeType) {
@@ -189,6 +222,7 @@ export function parseSurveyAnswers(input: unknown): SurveyAnswers | string {
 
   return {
     hackathonFormat,
+    country,
     challengeType,
     learningFormats,
     buildLearnBalance,

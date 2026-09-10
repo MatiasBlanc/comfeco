@@ -11,10 +11,49 @@ interface WaitlistSummary {
   response_rate: number;
 }
 
+interface SurveySummary {
+  responses: number;
+  avg_build_learn_balance: number;
+  hackathon_formats: Record<string, number> | null;
+  countries: Record<string, number> | null;
+  challenge_types: Record<string, number> | null;
+  competitions: Record<string, number> | null;
+  motivations: Record<string, number> | null;
+  year_round_events: Record<string, number> | null;
+  recent_feedback: Array<{ feedback: string; created_at: string }> | null;
+}
+
 interface PulseResponse {
   message?: string;
   summary?: WaitlistSummary;
+  survey?: SurveySummary | null;
 }
+
+const COUNTRY_FLAGS: Record<string, string> = {
+  Argentina: "🇦🇷",
+  Bolivia: "🇧🇴",
+  Chile: "🇨🇱",
+  Colombia: "🇨🇴",
+  "Costa Rica": "🇨🇷",
+  Cuba: "🇨🇺",
+  Ecuador: "🇪🇨",
+  "El Salvador": "🇸🇻",
+  España: "🇪🇸",
+  "Estados Unidos": "🇺🇸",
+  Guatemala: "🇬🇹",
+  Honduras: "🇭🇳",
+  México: "🇲🇽",
+  Nicaragua: "🇳🇮",
+  Panamá: "🇵🇦",
+  Paraguay: "🇵🇾",
+  Perú: "🇵🇪",
+  "Puerto Rico": "🇵🇷",
+  "República Dominicana": "🇩🇴",
+  Uruguay: "🇺🇾",
+  Venezuela: "🇻🇪",
+  Otro: "🌎",
+  "No especificado": "❓",
+};
 
 const METRICS: { key: keyof WaitlistSummary; label: string; suffix?: string }[] = [
   { key: "waitlist", label: "Waitlist total" },
@@ -45,12 +84,13 @@ async function fetchPulse(password?: string): Promise<PulseResponse & { ok: bool
 }
 
 /**
- * Página privada `/pulse` con métricas básicas de waitlist y discovery.
+ * Página privada `/pulse` con métricas de waitlist y demografía de audiencia estilo Twitter.
  *
  * @returns Gate de contraseña o el tablero de métricas.
  */
 export default function PulsePage(): JSX.Element {
   const [summary, setSummary] = useState<WaitlistSummary | null>(null);
+  const [survey, setSurvey] = useState<SurveySummary | null>(null);
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,6 +106,7 @@ export default function PulsePage(): JSX.Element {
         const data = await fetchPulse();
         if (data.ok && data.summary) {
           setSummary(data.summary);
+          setSurvey(data.survey ?? null);
           return;
         }
 
@@ -94,6 +135,7 @@ export default function PulsePage(): JSX.Element {
       }
 
       setSummary(data.summary);
+      setSurvey(data.survey ?? null);
     } catch (error) {
       setErrorMessage(
         error instanceof Error ? error.message : "No pudimos abrir Pulse.",
@@ -153,6 +195,30 @@ export default function PulsePage(): JSX.Element {
     );
   }
 
+  const countries = survey?.countries ?? {};
+  const totalCountryResponses = Object.values(countries).reduce((acc, n) => acc + n, 0);
+  const countryList = Object.entries(countries)
+    .map(([country, count]) => {
+      const percentage =
+        totalCountryResponses > 0
+          ? Math.round((count / totalCountryResponses) * 100)
+          : 0;
+      return { country, count, percentage };
+    })
+    .sort((a, b) => b.count - a.count);
+
+  const formats = survey?.hackathon_formats ?? {};
+  const totalFormatResponses = Object.values(formats).reduce((acc, n) => acc + n, 0);
+  const formatList = Object.entries(formats)
+    .map(([format, count]) => {
+      const percentage =
+        totalFormatResponses > 0
+          ? Math.round((count / totalFormatResponses) * 100)
+          : 0;
+      return { format, count, percentage };
+    })
+    .sort((a, b) => b.count - a.count);
+
   return (
     <SimpleLayout title="Pulse" description="Estado actual de la waitlist y la encuesta de discovery.">
       <dl className="m-0 grid gap-4 sm:grid-cols-2">
@@ -170,6 +236,116 @@ export default function PulsePage(): JSX.Element {
           </div>
         ))}
       </dl>
+
+      {/* Sección de Demografía / Audiencia por País — Estilo Twitter Analytics */}
+      <section className="mt-8 rounded-2xl border border-charcoal/10 bg-white p-6 shadow-xs">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-charcoal/10 pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="font-display text-xl font-bold text-charcoal">
+                Audiencia por país
+              </h2>
+              <span className="rounded-full bg-violet/10 px-2.5 py-0.5 text-xs font-semibold text-violet">
+                Demografía Twitter-style
+              </span>
+            </div>
+            <p className="text-sm text-charcoal/60 mt-0.5">
+              Distribución geográfica de participantes basada en las respuestas de la encuesta.
+            </p>
+          </div>
+          <div className="text-left sm:text-right">
+            <span className="text-xs font-medium uppercase tracking-wider text-charcoal/50">
+              Total respuestas
+            </span>
+            <p className="font-display text-2xl font-extrabold text-purple-deep leading-none">
+              {totalCountryResponses}
+            </p>
+          </div>
+        </div>
+
+        {countryList.length === 0 ? (
+          <div className="py-12 text-center">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-violet/10 text-2xl">
+              🌎
+            </div>
+            <p className="font-medium text-charcoal">Aún no hay respuestas de países registradas</p>
+            <p className="text-sm text-charcoal/60 mt-1 max-w-md mx-auto">
+              Las estadísticas demográficas por país se actualizarán automáticamente a medida que los participantes respondan la encuesta.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-4 flex flex-col divide-y divide-charcoal/5">
+            <div className="flex items-center justify-between pb-2 text-xs font-semibold uppercase tracking-wider text-charcoal/40">
+              <span>Ranking / País</span>
+              <span>Porcentaje y cantidad</span>
+            </div>
+            {countryList.map((item, index) => (
+              <div key={item.country} className="py-3 group">
+                <div className="flex items-center justify-between text-sm mb-1.5">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-5 text-xs font-bold text-charcoal/40 text-right">
+                      #{index + 1}
+                    </span>
+                    <span className="text-lg leading-none" role="img" aria-label={item.country}>
+                      {COUNTRY_FLAGS[item.country] ?? "🌐"}
+                    </span>
+                    <span className="font-semibold text-charcoal group-hover:text-purple-deep transition-colors">
+                      {item.country}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs text-charcoal/60 font-medium">
+                      {item.count} {item.count === 1 ? "persona" : "personas"}
+                    </span>
+                    <span className="w-12 text-right font-mono text-sm font-bold text-charcoal">
+                      {item.percentage}%
+                    </span>
+                  </div>
+                </div>
+                {/* Barra de porcentaje estilo Twitter Analytics */}
+                <div className="h-2 w-full overflow-hidden rounded-full bg-charcoal/5">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-violet to-purple-deep transition-all duration-500 ease-out"
+                    style={{ width: `${Math.max(item.percentage, 2)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Modalidad preferida */}
+      {formatList.length > 0 ? (
+        <section className="mt-6 rounded-2xl border border-charcoal/10 bg-white p-6 shadow-xs">
+          <div className="border-b border-charcoal/10 pb-4">
+            <h2 className="font-display text-xl font-bold text-charcoal">
+              Modalidad de hackathon preferida
+            </h2>
+            <p className="text-sm text-charcoal/60 mt-0.5">
+              Online, presencial o híbrido según respuestas de la encuesta.
+            </p>
+          </div>
+          <div className="mt-4 flex flex-col gap-3">
+            {formatList.map((item) => (
+              <div key={item.format} className="flex flex-col gap-1">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="font-semibold capitalize text-charcoal">{item.format}</span>
+                  <span className="font-mono text-sm font-bold text-charcoal">
+                    {item.percentage}% ({item.count})
+                  </span>
+                </div>
+                <div className="h-2 w-full overflow-hidden rounded-full bg-charcoal/5">
+                  <div
+                    className="h-full rounded-full bg-gold transition-all duration-500 ease-out"
+                    style={{ width: `${Math.max(item.percentage, 2)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </SimpleLayout>
   );
 }
