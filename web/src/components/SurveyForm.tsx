@@ -53,7 +53,11 @@ export default function SurveyForm({
   token,
   onSuccess,
 }: SurveyFormProps): JSX.Element {
-  const [hackathonFormat, setHackathonFormat] = useState("");
+  const initialFormat = typeof window !== "undefined"
+    ? new URLSearchParams(window.location.search).get("format") ?? ""
+    : "";
+  const isValidFormat = HACKATHON_FORMATS.some((f) => f.value === initialFormat);
+  const [hackathonFormat, setHackathonFormat] = useState(isValidFormat ? initialFormat : "");
   const [challengeType, setChallengeType] = useState("");
   const [learningFormats, setLearningFormats] = useState<string[]>([]);
   const [buildLearnBalance, setBuildLearnBalance] = useState(3);

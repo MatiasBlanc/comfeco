@@ -19,27 +19,27 @@
   }
 
   50% {
-    translate: 0 -14px;
+    translate: 0 -22px;
   }
 }
 
 .geometric-float {
-  animation: geometric-float 7s ease-in-out infinite;
+  animation: geometric-float 5s ease-in-out infinite;
   will-change: translate;
 }
 
 .geometric-float-delay-1 {
-  animation-delay: -1.5s;
+  animation-delay: -1.2s;
 }
 
 .geometric-float-delay-2 {
-  animation-delay: -3.5s;
-  animation-duration: 9s;
+  animation-delay: -2.8s;
+  animation-duration: 6.5s;
 }
 
 .geometric-float-delay-3 {
-  animation-delay: -5s;
-  animation-duration: 8s;
+  animation-delay: -4s;
+  animation-duration: 5.8s;
 }
 
 @font-face {
