@@ -19,7 +19,7 @@ interface SurveyLookupResponse {
  */
 export default function SurveyPage(): JSX.Element {
   const token = readSurveyToken(window.location.search);
-  const [status, setStatus] = useState<SurveyStatus>(token ? "loading" : "invalid");
+  const [status, setStatus] = useState<SurveyStatus>(token ? "ready" : "invalid");
   const [errorMessage, setErrorMessage] = useState(
     "Este enlace no es válido. Pide uno nuevo al equipo de COMFECO.",
   );
@@ -77,7 +77,7 @@ export default function SurveyPage(): JSX.Element {
 
   if (status === "loading") {
     return (
-      <SimpleLayout title="Ayúdanos a construir COMFECO" description="Son 2–3 minutos.">
+      <SimpleLayout title={<>Ayúdanos a construir <span className="text-[#FFD400]">COMFECO</span></>}>
         <p className="m-0 text-charcoal/80" role="status">
           Cargando la encuesta...
         </p>
@@ -87,7 +87,7 @@ export default function SurveyPage(): JSX.Element {
 
   if (status === "completed") {
     return (
-      <SimpleLayout title="Ya nos ayudaste">
+      <SimpleLayout title={<>Ayúdanos a construir <span className="text-[#FFD400]">COMFECO</span></>}>
         <div role="status">
           <h2 className="m-0 font-display text-3xl font-extrabold tracking-tight text-purple-deep">
             Gracias por responder.
@@ -112,8 +112,7 @@ export default function SurveyPage(): JSX.Element {
 
   return (
     <SimpleLayout
-      title="Ayúdanos a construir COMFECO"
-      description="Queremos diseñar esta nueva etapa junto a la comunidad. Son 2–3 minutos."
+      title={<>Ayúdanos a construir <span className="text-[#FFD400]">COMFECO</span></>}
     >
       <SurveyForm token={token} onSuccess={() => setStatus("completed")} />
     </SimpleLayout>

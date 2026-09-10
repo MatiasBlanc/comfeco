@@ -130,64 +130,70 @@ export default function SurveyForm({
         <legend className="mb-1 text-base font-semibold text-charcoal">
           ¿Qué formato te convence más para la hackathon?
         </legend>
-        {HACKATHON_FORMATS.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="radio"
-              name="hackathonFormat"
-              value={option.value}
-              checked={hackathonFormat === option.value}
-              onChange={() => setHackathonFormat(option.value)}
-              required
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {HACKATHON_FORMATS.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="radio"
+                name="hackathonFormat"
+                value={option.value}
+                checked={hackathonFormat === option.value}
+                onChange={() => setHackathonFormat(option.value)}
+                required
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
         <legend className="mb-1 text-base font-semibold text-charcoal">
           ¿Qué tipo de challenge te gustaría enfrentar?
         </legend>
-        {CHALLENGE_TYPES.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="radio"
-              name="challengeType"
-              value={option.value}
-              checked={challengeType === option.value}
-              onChange={() => setChallengeType(option.value)}
-              required
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {CHALLENGE_TYPES.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="radio"
+                name="challengeType"
+                value={option.value}
+                checked={challengeType === option.value}
+                onChange={() => setChallengeType(option.value)}
+                required
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
         <legend className="mb-1 text-base font-semibold text-charcoal">
           ¿Cómo te gusta aprender en un evento como COMFECO?
         </legend>
-        {LEARNING_FORMATS.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="checkbox"
-              name="learningFormats"
-              value={option.value}
-              checked={learningFormats.includes(option.value)}
-              onChange={() =>
-                setLearningFormats((current) => toggleValue(current, option.value))
-              }
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {LEARNING_FORMATS.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="checkbox"
+                name="learningFormats"
+                value={option.value}
+                checked={learningFormats.includes(option.value)}
+                onChange={() =>
+                  setLearningFormats((current) => toggleValue(current, option.value))
+                }
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
@@ -220,66 +226,72 @@ export default function SurveyForm({
         <legend className="mb-1 text-base font-semibold text-charcoal">
           ¿Qué tipo de competencias te motivan?
         </legend>
-        {COMPETITIONS.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="checkbox"
-              name="competitions"
-              value={option.value}
-              checked={competitions.includes(option.value)}
-              onChange={() =>
-                setCompetitions((current) => toggleValue(current, option.value))
-              }
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {COMPETITIONS.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="checkbox"
+                name="competitions"
+                value={option.value}
+                checked={competitions.includes(option.value)}
+                onChange={() =>
+                  setCompetitions((current) => toggleValue(current, option.value))
+                }
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
         <legend className="mb-1 text-base font-semibold text-charcoal">
           ¿Por qué participarías en COMFECO?
         </legend>
-        {MOTIVATIONS.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="checkbox"
-              name="motivations"
-              value={option.value}
-              checked={motivations.includes(option.value)}
-              onChange={() =>
-                setMotivations((current) => toggleValue(current, option.value))
-              }
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {MOTIVATIONS.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="checkbox"
+                name="motivations"
+                value={option.value}
+                checked={motivations.includes(option.value)}
+                onChange={() =>
+                  setMotivations((current) => toggleValue(current, option.value))
+                }
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
         <legend className="mb-1 text-base font-semibold text-charcoal">
           Además del evento principal, ¿qué te gustaría que existiera durante el año?
         </legend>
-        {YEAR_ROUND_EVENTS.map((option) => (
-          <label key={option.value} className={optionStyles}>
-            <input
-              type="checkbox"
-              name="yearRoundEvents"
-              value={option.value}
-              checked={yearRoundEvents.includes(option.value)}
-              onChange={() =>
-                setYearRoundEvents((current) => toggleValue(current, option.value))
-              }
-              disabled={isSubmitting}
-              className="mt-1"
-            />
-            <span>{option.label}</span>
-          </label>
-        ))}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {YEAR_ROUND_EVENTS.map((option) => (
+            <label key={option.value} className={optionStyles}>
+              <input
+                type="checkbox"
+                name="yearRoundEvents"
+                value={option.value}
+                checked={yearRoundEvents.includes(option.value)}
+                onChange={() =>
+                  setYearRoundEvents((current) => toggleValue(current, option.value))
+                }
+                disabled={isSubmitting}
+                className="mt-1"
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <div className="flex flex-col gap-1.5">

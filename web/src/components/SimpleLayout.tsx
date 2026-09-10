@@ -1,8 +1,8 @@
 import { useEffect, type JSX, type ReactNode } from "react";
 
 interface SimpleLayoutProps {
-  title: string;
-  description?: string;
+  title: ReactNode;
+  description?: ReactNode;
   children: ReactNode;
 }
 
@@ -28,32 +28,30 @@ export default function SimpleLayout({
   }, []);
 
   return (
-    <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#FFFFFF_0%,#390F64_42%,#521E87_75%,#FFFFFF_130%)] font-sans text-charcoal antialiased">
-      <header className="border-b border-charcoal/10 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-3xl items-center px-5 py-3">
+    <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#2E2E2E_0%,#390F64_42%,#521E87_75%,#2E2E2E_130%)] font-sans text-charcoal antialiased">
+      <div className="mx-auto w-full max-w-4xl px-5 py-8 sm:py-12">
+        <div className="mb-6">
           <a
             href="/"
             aria-label="COMFECO — ir al inicio"
-            className="rounded-lg outline-none transition focus-visible:ring-3 focus-visible:ring-violet/40"
+            className="inline-block rounded-lg outline-none transition focus-visible:ring-3 focus-visible:ring-[#FFD400]"
           >
             <img
               src="/brand/logo-horizontal.png"
               alt="COMFECO — Community Fest and Code"
               width="356"
               height="95"
-              className="h-9 w-auto"
+              className="h-10 w-auto"
             />
           </a>
         </div>
-      </header>
-      <div className="mx-auto w-full max-w-3xl px-5 py-10 sm:py-16">
-        <h1 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        <h1 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
           {title}
         </h1>
         {description ? (
-          <p className="mt-4 max-w-2xl text-lg text-white/80">{description}</p>
+          <p className="mt-3 max-w-2xl text-base text-[#F3E8F4] sm:text-lg">{description}</p>
         ) : null}
-        <div className="mt-8 rounded-2xl border border-charcoal/10 bg-white p-6 shadow-[0_1.5rem_4rem_rgba(70,20,111,0.08)] sm:p-8">
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white p-6 shadow-[0_1.5rem_4rem_rgba(57,15,100,0.35)] sm:p-10">
           {children}
         </div>
       </div>
