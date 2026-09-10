@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/survey", "destination": "/index.html" },
+    { "source": "/pulse", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/pulse",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/survey",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}

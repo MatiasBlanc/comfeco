@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@theme {
+  --color-purple-deep: #46146f;
+  --color-purple: #5e239e;
+  --color-violet: #8f3fd1;
+  --color-magenta: #b22cc4;
+  --color-gold: #f0b500;
+  --color-yellow: #f4c53a;
+  --color-charcoal: #2f2f33;
+  --font-display: "Lexend", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+}
+
 @font-face {
   font-family: "Lexend";
   font-style: normal;

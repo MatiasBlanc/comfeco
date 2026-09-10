@@ -5,3 +5,9 @@ enabled = true
 schemas = ["public"]
 extra_search_path = ["public", "extensions"]
 max_rows = 1000
+
+[functions.send-survey-email]
+verify_jwt = false
+
+[functions.send-discovery-batch]
+verify_jwt = false
