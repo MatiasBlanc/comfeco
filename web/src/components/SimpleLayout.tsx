@@ -4,6 +4,7 @@ interface SimpleLayoutProps {
   title: ReactNode;
   description?: ReactNode;
   children: ReactNode;
+  maxWidth?: string;
 }
 
 /**
@@ -12,12 +13,14 @@ interface SimpleLayoutProps {
  * @param title - Título visible de la página.
  * @param description - Texto de apoyo opcional.
  * @param children - Contenido principal dentro de la tarjeta.
+ * @param maxWidth - Ancho máximo del contenedor opcional.
  * @returns Layout mobile-first con branding de COMFECO.
  */
 export default function SimpleLayout({
   title,
   description,
   children,
+  maxWidth = "max-w-4xl",
 }: SimpleLayoutProps): JSX.Element {
   useEffect(() => {
     const robots = document.createElement("meta");
@@ -29,7 +32,7 @@ export default function SimpleLayout({
 
   return (
     <main className="relative isolate min-h-svh overflow-x-hidden bg-[linear-gradient(145deg,#2E2E2E_0%,#390F64_42%,#521E87_75%,#2E2E2E_130%)] font-sans text-charcoal antialiased">
-      <div className="mx-auto w-full max-w-4xl px-5 py-8 sm:py-12">
+      <div className={`mx-auto w-full ${maxWidth} px-5 py-8 sm:py-12`}>
         <div className="mb-6">
           <a
             href="/"

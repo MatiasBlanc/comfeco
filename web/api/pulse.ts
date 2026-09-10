@@ -28,10 +28,20 @@ interface SurveySummary {
   hackathon_formats: Record<string, number> | null;
   countries: Record<string, number> | null;
   challenge_types: Record<string, number> | null;
+  learning_formats: Record<string, number> | null;
   competitions: Record<string, number> | null;
   motivations: Record<string, number> | null;
   year_round_events: Record<string, number> | null;
   recent_feedback: Array<{ feedback: string; created_at: string }> | null;
+}
+
+export interface RegistrationItem {
+  id: string;
+  email: string;
+  created_at: string;
+  survey_sent_at: string | null;
+  survey_completed_at: string | null;
+  response: Record<string, unknown> | null;
 }
 
 const SESSION_COOKIE = "pulse_session";
@@ -179,8 +189,61 @@ export default async function handler(
     .select("*")
     .maybeSingle();
 
+  const { data: waitlistRows } = await supabase
+    .from("waitlist")
+    .select("id, email, created_at, survey_sent_at, survey_completed_at")
+    .order("created_at", { ascending: false });
+
+  const { data: surveyResponses } = await supabase
+    .from("survey_responses")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  const learningFormats: Record<string, number> = {};
+  for (const resp of surveyResponses ?? []) {
+    const formats = (resp as Record<string, unknown>).learning_formats;
+    if (Array.isArray(formats)) {
+      for (const fmt of formats) {
+        if (typeof fmt === "string") {
+          learningFormats[fmt] = (learningFormats[fmt] ?? 0) + 1;
+        }
+      }
+    }
+  }
+
+  const responseByWaitlistId = new Map(
+    (surveyResponses ?? []).map((r) => [
+      (r as Record<string, unknown>).waitlist_id as string,
+      r as Record<string, unknown>,
+    ]),
+  );
+
+  const registrations: RegistrationItem[] = ((waitlistRows ?? []) as Record<string, unknown>[]).map(
+    (row) => ({
+      id: String(row.id),
+      email: String(row.email),
+      created_at: String(row.created_at),
+      survey_sent_at: row.survey_sent_at ? String(row.survey_sent_at) : null,
+      survey_completed_at: row.survey_completed_at ? String(row.survey_completed_at) : null,
+      response: responseByWaitlistId.get(String(row.id)) ?? null,
+    }),
+  );
+
+  const surveySummaryCombined = surveyData
+    ? {
+        ...(surveyData as SurveySummary),
+        learning_formats:
+          (surveyData as SurveySummary).learning_formats ??
+          (Object.keys(learningFormats).length > 0 ? learningFormats : null),
+      }
+    : Object.keys(learningFormats).length > 0
+      ? { learning_formats: learningFormats }
+      : null;
+
   response.status(200).json({
     summary,
-    survey: (surveyData as SurveySummary | null) ?? null,
+    survey: surveySummaryCombined,
+    registrations,
+    responses: surveyResponses ?? [],
   });
 }
