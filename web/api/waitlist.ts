@@ -11,7 +11,65 @@ interface ApiResponse {
   json(body: unknown): void;
 }
 
+interface WaitlistInsertRow {
+  id: string;
+}
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Envía la invitación a la encuesta después de registrar el correo.
+ * Si falla, la persona queda guardada para reintentarlo desde el batch manual.
+ *
+ * @param supabaseUrl - URL del proyecto Supabase.
+ * @param waitlistId - UUID recién insertado.
+ * @returns true si la Edge Function confirmó el envío.
+ */
+async function sendAutomaticSurveyEmail(
+  supabaseUrl: string,
+  waitlistId: string,
+): Promise<boolean> {
+  const sendSecret = process.env.DISCOVERY_SEND_SECRET;
+  if (!sendSecret) {
+    console.error(JSON.stringify({ waitlistId, error: "Falta DISCOVERY_SEND_SECRET." }));
+    return false;
+  }
+
+  try {
+    const sendResponse = await fetch(
+      `${supabaseUrl}/functions/v1/send-survey-email`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${sendSecret}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ waitlist_id: waitlistId }),
+      },
+    );
+
+    if (!sendResponse.ok) {
+      console.error(
+        JSON.stringify({
+          waitlistId,
+          status: sendResponse.status,
+          error: "La Edge Function no pudo enviar la encuesta.",
+        }),
+      );
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error(
+      JSON.stringify({
+        waitlistId,
+        error: error instanceof Error ? error.message : "Error desconocido.",
+      }),
+    );
+    return false;
+  }
+}
 
 /**
  * Valida y registra un correo en Supabase sin exponer credenciales privadas.
@@ -55,20 +113,35 @@ export default async function handler(
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
-  const { error } = await supabase.from("waitlist").insert({
-    email,
-    wants_updates: true,
-  });
+  const { data, error } = await supabase
+    .from("waitlist")
+    .insert({
+      email,
+      wants_updates: true,
+    })
+    .select("id")
+    .single();
 
   if (error?.code === "23505") {
     response.status(409).json({ message: "Ese email ya está en la waitlist." });
     return;
   }
 
-  if (error) {
+  if (error || !data) {
     response.status(500).json({ message: "No pudimos guardar tu correo." });
     return;
   }
 
-  response.status(201).json({ ok: true });
+  const surveyEmailSent = await sendAutomaticSurveyEmail(
+    supabaseUrl,
+    (data as WaitlistInsertRow).id,
+  );
+
+  response.status(201).json({
+    ok: true,
+    survey_email_sent: surveyEmailSent,
+    message: surveyEmailSent
+      ? "Registro confirmado. Revisa tu correo para responder la encuesta."
+      : "Registro confirmado. Te enviaremos la encuesta cuando esté disponible.",
+  });
 }

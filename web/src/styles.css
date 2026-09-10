@@ -12,6 +12,36 @@
   --font-sans: "Poppins", sans-serif;
 }
 
+@keyframes geometric-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -14px;
+  }
+}
+
+.geometric-float {
+  animation: geometric-float 7s ease-in-out infinite;
+  will-change: translate;
+}
+
+.geometric-float-delay-1 {
+  animation-delay: -1.5s;
+}
+
+.geometric-float-delay-2 {
+  animation-delay: -3.5s;
+  animation-duration: 9s;
+}
+
+.geometric-float-delay-3 {
+  animation-delay: -5s;
+  animation-duration: 8s;
+}
+
 @font-face {
   font-family: "Lexend";
   font-style: normal;
@@ -42,4 +72,10 @@
   font-weight: 700;
   font-display: swap;
   src: url("/fonts/poppins-700.ttf") format("truetype");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .geometric-float {
+    animation: none;
+  }
 }

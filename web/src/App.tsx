@@ -55,16 +55,16 @@ export default function App(): JSX.Element {
       <div className="pointer-events-none absolute bottom-[-18rem] right-[12%] -z-10 size-[38rem] rounded-full bg-[#FFD400]/15 blur-[130px]" />
 
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <span className="absolute left-[6%] top-[18%] size-6 rotate-12 border-4 border-[#8A178C]/70" />
-        <span className="absolute right-[18%] top-[10%] size-7 rotate-45 bg-[#69156A]/80" />
-        <span className="absolute right-[7%] top-[32%] size-8 rotate-45 before:absolute before:left-0 before:top-1/2 before:h-1 before:w-full before:-translate-y-1/2 before:rounded-full before:bg-[#8A178C]/70 after:absolute after:left-1/2 after:top-0 after:h-full after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-[#8A178C]/70" />
-        <span className="absolute bottom-[16%] right-[22%] size-0 border-x-[16px] border-b-[28px] border-x-transparent border-b-[#FFD400]/70" />
-        <span className="absolute bottom-[10%] left-[9%] size-8 rounded-full border-4 border-[#FFD400]/70" />
-        <span className="absolute right-[38%] top-[56%] size-5 -rotate-12 border-4 border-[#8A178C]/60 max-sm:hidden" />
-        <span className="absolute left-[48%] top-[28%] size-0 border-x-[13px] border-b-[23px] border-x-transparent border-b-[#FFD400]/60 max-sm:hidden" />
+        <span className="geometric-float geometric-float-delay-1 absolute left-[6%] top-[18%] size-6 rotate-12 border-4 border-[#8A178C]/70" />
+        <span className="geometric-float geometric-float-delay-2 absolute right-[18%] top-[10%] size-7 rotate-45 bg-[#69156A]/80" />
+        <span className="geometric-float geometric-float-delay-3 absolute right-[7%] top-[32%] size-8 rotate-45 before:absolute before:left-0 before:top-1/2 before:h-1 before:w-full before:-translate-y-1/2 before:rounded-full before:bg-[#8A178C]/70 after:absolute after:left-1/2 after:top-0 after:h-full after:w-1 after:-translate-x-1/2 after:rounded-full after:bg-[#8A178C]/70" />
+        <span className="geometric-float geometric-float-delay-2 absolute bottom-[16%] right-[22%] size-0 border-x-[16px] border-b-[28px] border-x-transparent border-b-[#FFD400]/70" />
+        <span className="geometric-float geometric-float-delay-1 absolute bottom-[10%] left-[9%] size-8 rounded-full border-4 border-[#FFD400]/70" />
+        <span className="geometric-float geometric-float-delay-3 absolute right-[38%] top-[56%] size-5 -rotate-12 border-4 border-[#8A178C]/60 max-sm:hidden" />
+        <span className="geometric-float geometric-float-delay-2 absolute left-[48%] top-[28%] size-0 border-x-[13px] border-b-[23px] border-x-transparent border-b-[#FFD400]/60 max-sm:hidden" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-280 flex-col py-[clamp(1.25rem,3vh,2rem)] md:h-full md:min-h-0">
+      <div className="relative z-10 mx-auto flex min-h-svh w-[calc(100%_-_2.5rem)] max-w-[90rem] flex-col py-[clamp(1.25rem,3vh,2rem)] md:h-full md:min-h-0">
         <img
           src="/brand/logo-horizontal.png"
           alt="COMFECO — Community Fest and Code"
@@ -73,17 +73,17 @@ export default function App(): JSX.Element {
           className="h-auto w-[clamp(13rem,25vw,17rem)]"
         />
 
-        <section className="my-auto max-w-3xl py-[clamp(2rem,5vh,4rem)]" aria-labelledby="waitlist-title">
+        <section className="my-auto max-w-4xl py-[clamp(2rem,5vh,4rem)]" aria-labelledby="waitlist-title">
           <h1
             id="waitlist-title"
-            className="m-0 font-['Lexend'] text-[clamp(3rem,6vw,5rem)] font-bold leading-[0.98] tracking-[-0.055em]"
+            className="m-0 font-['Lexend'] text-[clamp(3.5rem,7vw,6.5rem)] font-bold leading-[0.95] tracking-[-0.055em]"
           >
             Deja de programar
-            <span className="mt-[0.12em] block font-['Lexend'] text-[clamp(4.5rem,10vw,8rem)] leading-[0.85] tracking-[-0.08em] text-[#FFD400]">
+            <span className="mt-[0.12em] block font-['Lexend'] text-[clamp(5rem,12vw,10rem)] leading-[0.82] tracking-[-0.08em] text-[#FFD400]">
               Solo.
             </span>
           </h1>
-          <p className="mt-7 max-w-2xl text-[clamp(1.125rem,1.7vw,1.375rem)] leading-[1.6] text-[#F3E8F4]">
+          <p className="mt-7 max-w-3xl text-[clamp(1.125rem,1.7vw,1.375rem)] leading-[1.6] text-[#F3E8F4]">
             Aprende de los que ya la están rompiendo, compite por premios reales
             y conecta con developers de toda la región.
           </p>
@@ -94,7 +94,7 @@ export default function App(): JSX.Element {
             </p>
           ) : (
             <form
-              className="relative mt-10 flex max-w-2xl gap-2.5 rounded-2xl border border-[#F3E8F4]/30 bg-[#2E2E2E]/50 p-2.5 shadow-[0_1.5rem_4rem_rgba(57,15,100,0.35)] backdrop-blur-xl max-sm:flex-col"
+              className="relative mt-10 flex max-w-3xl gap-2.5 rounded-2xl border border-[#F3E8F4]/30 bg-[#2E2E2E]/50 p-2.5 shadow-[0_1.5rem_4rem_rgba(57,15,100,0.35)] backdrop-blur-xl max-sm:flex-col"
               onSubmit={handleSubmit}
             >
               <label htmlFor="email" className="sr-only">
