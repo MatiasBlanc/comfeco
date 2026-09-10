@@ -63,12 +63,14 @@ export function buildSurveyEmail(surveyUrl: string): SurveyEmailContent {
   const text = [
     "COMFECO está volviendo.",
     "",
-    "Queremos diseñar esta nueva etapa junto a la comunidad.",
+    "Queremos diseñar esta nueva etapa junto a la comunidad. Ayúdanos respondiendo la primera pregunta con 1 clic:",
     "",
-    "¿En qué formato te gustaría participar en la próxima hackathon?",
+    "¿En qué formato te gustaría participar en la hackathon/charlas?",
     `- 100% Online: ${surveyUrl}&format=online`,
     `- Presencial: ${surveyUrl}&format=presencial`,
     `- Híbrido: ${surveyUrl}&format=hibrido`,
+    "",
+    "Al hacer clic se registrará tu preferencia y serás llevado a la web para afinar detalles.",
     "",
     `O abre la encuesta completa: ${surveyUrl}`,
   ].join("\n");
@@ -85,7 +87,7 @@ export function buildSurveyEmail(surveyUrl: string): SurveyEmailContent {
                 <p style="margin:0 0 12px;color:#F0B500;font-size:12px;font-weight:bold;letter-spacing:0.2em;">COMMUNITY FEST AND CODE</p>
                 <h1 style="margin:0 0 16px;color:#46146F;font-size:26px;line-height:1.2;">COMFECO está volviendo.</h1>
                 <p style="margin:0 0 16px;color:#2F2F33;font-size:16px;line-height:1.5;">Queremos diseñar esta nueva etapa junto a la comunidad. Ayúdanos respondiendo la primera pregunta con 1 clic:</p>
-                <p style="margin:0 0 14px;color:#46146F;font-size:17px;font-weight:bold;">¿En qué formato te gustaría participar en la hackathon?</p>
+                <p style="margin:0 0 14px;color:#46146F;font-size:17px;font-weight:bold;">¿En qué formato te gustaría participar en la hackathon/charlas?</p>
 
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
                   <tr>
@@ -105,13 +107,13 @@ export function buildSurveyEmail(surveyUrl: string): SurveyEmailContent {
                   <tr>
                     <td style="padding:5px 0;">
                       <a href="${surveyUrl}&format=hibrido" style="display:block;background:#F7F5F8;border:2px solid #5E239E;color:#2F2F33;text-decoration:none;padding:14px 20px;border-radius:12px;font-weight:bold;font-size:15px;text-align:left;">
-                        🔀 &nbsp; Híbrido (charlas online + cierre presencial)
+                        🔀 &nbsp; Híbrido
                       </a>
                     </td>
                   </tr>
                 </table>
 
-                <p style="margin:0;color:#666666;font-size:13px;line-height:1.4;">Al hacer clic se registrará tu preferencia y podrás responder 2 o 3 preguntas breves más para afinar los detalles.</p>
+                <p style="margin:0;color:#666666;font-size:13px;line-height:1.4;">Al hacer clic se registrará tu preferencia y serás llevado a la web para afinar detalles.</p>
               </td>
             </tr>
           </table>
